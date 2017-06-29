@@ -19,7 +19,7 @@ useful and want to participate.
 ## What is Bashir
 
 Bashir is bash automation. It has a DSL that allows you to define commands that
-will run in sequence or in parallel. 
+will run in sequence or in parallel.
 
 Each command has args, params, environment variables, files and more.
 
@@ -33,3 +33,27 @@ and much more.
 The development of Bashir is following very strict minimal approach and I like
 to verify if something is useful before putting it into the product.
 
+## Configuration
+
+Create a YAML file called `bashir.yml` and paste this content.
+
+```
+---
+command_args:
+  - environment
+  - ansible_pass_file
+
+commands:
+  - name: Migrate service X
+    command: ansible-playbook ... {.env}
+    virtualenv: ansible-deploy
+    report_to:
+      - KensoDev
+
+  - name: Migrate service X
+    command: ansible-playbook ... {.Env}
+    virtualenv: ansible-deploy
+    report_to:
+      - KensoDev
+
+```
