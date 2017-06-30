@@ -33,6 +33,11 @@ and much more.
 The development of Bashir is following very strict minimal approach and I like
 to verify if something is useful before putting it into the product.
 
+## Limitations
+
+1. File has to be executable `chmod +x` and if it's a shell file, you will need
+   a proper header such as `#!/bin/sh`
+
 ## Configuration
 
 Create a YAML file called `bashir.yml` and paste this content.

@@ -6,8 +6,10 @@ type Config struct {
 }
 
 type Command struct {
+	WorkingDir string   `yaml:"cwd"`
 	Name       string   `yaml:"name"`
 	Command    string   `yaml:"command"`
+	Args       []string `yaml:"args"`
 	VirtualEnv string   `yaml:"virtualenv"`
 	ReportTo   []string `yaml:"report_to"`
 }
