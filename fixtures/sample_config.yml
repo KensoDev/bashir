@@ -1,4 +1,10 @@
 ---
+slack:
+  webhook_url: https://test.com
+  channel: "#channelname"
+  icon: ":iconname:"
+  botname: botname
+
 defaults:
   envvars:
     - TEST_A
@@ -9,6 +15,9 @@ defaults:
 
 commands:
   - name: Migrate service X
+    description: |
+      This is the command decription
+      and it can include lots of information
     image_name: kensodev/bashir
     command: /run.sh
     envvars:

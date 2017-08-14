@@ -76,6 +76,9 @@ defaults:
 
 commands:
   - name: Migrate service X
+    description: |
+      This is the command decription
+      and it can include lots of information
     image_name: kensodev/bashir
     command: /run.sh
     envvars:

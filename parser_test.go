@@ -29,6 +29,15 @@ func (s *ParserSuite) TestParseOfYamlFileGetUsers(c *C) {
 	c.Assert(config.Commands[0].ReportTo[0], Equals, "KensoDev")
 }
 
+func (s *ParserSuite) TestParseYamlFileAndGetDescription(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, err := parser.ParseConfigurationFile()
+
+	c.Assert(err, IsNil)
+	c.Assert(config.Commands[0].Description, Not(Equals), "")
+}
+
 func (s *ParserSuite) TestParseOfYamlFileGetCommand(c *C) {
 	configLocation := "fixtures/sample_config.yml"
 	parser := NewParser(configLocation)
@@ -36,4 +45,14 @@ func (s *ParserSuite) TestParseOfYamlFileGetCommand(c *C) {
 
 	c.Assert(err, IsNil)
 	c.Assert(config.Commands[0].ImageName, Equals, "kensodev/bashir")
+}
+
+func (s *ParserSuite) TestParseOfYamlFileWithSlackConfig(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, err := parser.ParseConfigurationFile()
+
+	c.Assert(err, IsNil)
+	c.Assert(config, NotNil)
+	c.Assert(config.Slack.WebhookUrl, Equals, "https://test.com")
 }

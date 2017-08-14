@@ -14,3 +14,4 @@
 .glide/
 fixtures/internal_*
 cmd/bashir/bashir
+cmd/bashir/*.yml

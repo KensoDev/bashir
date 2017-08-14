@@ -2,16 +2,24 @@ package bashir
 
 import (
 	"fmt"
+	"log"
 	"os/exec"
 )
 
 type Runner struct {
-	Config *Config
+	Config         *Config
+	SlackClient    *SlackClient
+	SlackGenerator *SlackGenerator
 }
 
 func NewRunner(config *Config) *Runner {
+	slackClient := NewSlackClient(config)
+	slackGenerator := NewSlackGenerator()
+
 	return &Runner{
-		Config: config,
+		Config:         config,
+		SlackClient:    slackClient,
+		SlackGenerator: slackGenerator,
 	}
 }
 
@@ -21,6 +29,13 @@ func (r *Runner) RunCommands() *RunResult {
 	generator := NewCommandGenerator(r.Config)
 
 	for _, command := range r.Config.Commands {
+		message := r.SlackGenerator.GetSlackMessageForStart(command)
+		err := r.SlackClient.SendMessage(message)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		envVars := generator.GetEnvVarsArguments(command)
 		args := generator.GetArgs(command)
 
