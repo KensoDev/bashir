@@ -28,12 +28,14 @@ commands:
       - inventory/aws.py
       - -b
       - someting/aws.py
+    out: migrate-service-x.log
     report_to:
       - KensoDev
 
   - name: Migrate service X
     image_name: kensodev/bashir
     command: /run.sh
+    out: migrate-service-x.log
     envvars:
       - TEST_C
     args:

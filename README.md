@@ -64,7 +64,10 @@ Configures the commands:
 ```
 ---
 slack:
-  webhook_url: https://slack.com/your-webhook
+  webhook_url: https://test.com
+  channel: "#channelname"
+  icon: ":iconname:"
+  botname: botname
 
 defaults:
   envvars:

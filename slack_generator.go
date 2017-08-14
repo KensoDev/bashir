@@ -22,3 +22,18 @@ func (g *SlackGenerator) GetSlackMessageForStart(command Command) string {
 
 	return message
 }
+
+func (g *SlackGenerator) GetSlackMessageForEnd(command Command, success bool, out []byte) string {
+	var message string
+
+	if command.Description == "" {
+		message = fmt.Sprintf("Starting: %s", command.Name)
+		return message
+	}
+
+	message = "%s\n```%s```"
+
+	message = fmt.Sprintf(message, command.Name, command.Description)
+
+	return message
+}
