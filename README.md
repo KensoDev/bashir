@@ -108,3 +108,8 @@ commands:
 ## Project status
 
 Project is actively developed and being worked on. If you have comments/suggestions please feel free to let me know
+
+## Credits
+
+* [@kayteh](https://github.com/kayteh) - Pairing and solving the env vars and args merging nicely into a single command and debugging the docker run command.
+
