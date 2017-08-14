@@ -29,11 +29,11 @@ func (s *ParserSuite) TestParseOfYamlFileGetUsers(c *C) {
 	c.Assert(config.Commands[0].ReportTo[0], Equals, "KensoDev")
 }
 
-func (s *ParserSuite) TestParseOfYamlFileGetCommandArgs(c *C) {
+func (s *ParserSuite) TestParseOfYamlFileGetCommand(c *C) {
 	configLocation := "fixtures/sample_config.yml"
 	parser := NewParser(configLocation)
 	config, err := parser.ParseConfigurationFile()
 
 	c.Assert(err, IsNil)
-	c.Assert(len(config.CommandArgs), Equals, 2)
+	c.Assert(config.Commands[0].Container, Equals, "kensodev/bashir")
 }

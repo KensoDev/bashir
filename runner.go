@@ -18,11 +18,20 @@ func NewRunner(config *Config) *Runner {
 type RunResult struct{}
 
 func (r *Runner) RunCommands() *RunResult {
-	for _, command := range r.Config.Commands {
-		fmt.Println(command.WorkingDir)
+	generator := NewCommandGenerator(r.Config)
 
-		cmd = exec.Command(command.Command, command.Args...)
-		cmd.Dir = command.WorkingDir
+	for _, command := range r.Config.Commands {
+		envVars := generator.GetEnvVarsArguments(command)
+		args := generator.GetArgs(command)
+
+		commandArgs := []string{"run", "-i"}
+
+		commandArgs = append(commandArgs, envVars...)
+		commandArgs = append(commandArgs, command.Container)
+		commandArgs = append(commandArgs, command.Command)
+		commandArgs = append(commandArgs, args...)
+
+		cmd := exec.Command("docker", commandArgs...)
 
 		fmt.Println(cmd)
 

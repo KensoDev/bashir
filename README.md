@@ -51,13 +51,11 @@ command_args:
 commands:
   - name: Migrate service X
     command: ansible-playbook ... {.env}
-    virtualenv: ansible-deploy
     report_to:
       - KensoDev
 
   - name: Migrate service X
     command: ansible-playbook ... {.Env}
-    virtualenv: ansible-deploy
     report_to:
       - KensoDev
 

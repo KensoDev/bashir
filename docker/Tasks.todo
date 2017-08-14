@@ -1,0 +1,11 @@
+** Environment variables
+
+* Parse environment variables from config
+* Parse environemtn variables from default config
+* Merge the variables from the config and the default config
+
+** 
+
+docker run -e ... -e ... -it image/name command args...
+
+

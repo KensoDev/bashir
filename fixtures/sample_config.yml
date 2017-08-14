@@ -1,17 +1,37 @@
 ---
-command_args:
-  - environment
-  - ansible_pass_file
+defaults:
+  envvars:
+    - TEST_A
+    - TEST_B
+  args:
+    - -x
+    - test
 
 commands:
   - name: Migrate service X
-    command: ansible-playbook ... {.env}
-    virtualenv: ansible-deploy
+    container: kensodev/bashir
+    command: /run.sh
+    envvars:
+      - TEST_C
+    args:
+      - --check
+      - -i
+      - inventory/aws.py
+      - -b
+      - someting/aws.py
     report_to:
       - KensoDev
 
   - name: Migrate service X
-    command: ansible-playbook ... {.Env}
-    virtualenv: ansible-deploy
+    container: kensodev/bashir
+    command: /run.sh
+    envvars:
+      - TEST_C
+    args:
+      - --check
+      - -i
+      - inventory/aws.py
+      - -b
+      - someting/aws.py
     report_to:
       - KensoDev
