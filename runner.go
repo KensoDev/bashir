@@ -52,8 +52,8 @@ func (r *Runner) RunCommands() *RunResult {
 
 		out, err := cmd.CombinedOutput()
 
-		message := r.SlackGenerator.GetSlackMessageForEnd(command, err != nil, out)
-		err := r.SlackClient.SendMessage(message)
+		message = r.SlackGenerator.GetSlackMessageForEnd(command, err, out)
+		err = r.SlackClient.SendMessage(message)
 
 		fmt.Println(string(out))
 		fmt.Println(err)

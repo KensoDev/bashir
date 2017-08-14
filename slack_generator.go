@@ -1,6 +1,9 @@
 package bashir
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type SlackGenerator struct{}
 
@@ -23,17 +26,14 @@ func (g *SlackGenerator) GetSlackMessageForStart(command Command) string {
 	return message
 }
 
-func (g *SlackGenerator) GetSlackMessageForEnd(command Command, success bool, out []byte) string {
-	var message string
+func (g *SlackGenerator) GetSlackMessageForEnd(command Command, runErr error, out []byte) string {
+	result := "Command finished successfully"
 
-	if command.Description == "" {
-		message = fmt.Sprintf("Starting: %s", command.Name)
-		return message
+	if runErr != nil {
+		mentions := strings.Join(command.ReportTo, ", ")
+		result = fmt.Sprintf("Command failed to run: cc/ %s. Result was %s", mentions, runErr)
 	}
 
-	message = "%s\n```%s```"
-
-	message = fmt.Sprintf(message, command.Name, command.Description)
-
+	message := fmt.Sprintf("Finished running: %s. %s", command.Name, result)
 	return message
 }
