@@ -35,5 +35,5 @@ func (s *ParserSuite) TestParseOfYamlFileGetCommand(c *C) {
 	config, err := parser.ParseConfigurationFile()
 
 	c.Assert(err, IsNil)
-	c.Assert(config.Commands[0].Container, Equals, "kensodev/bashir")
+	c.Assert(config.Commands[0].ImageName, Equals, "kensodev/bashir")
 }

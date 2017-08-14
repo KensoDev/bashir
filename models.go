@@ -14,7 +14,7 @@ type DefaultConfig struct {
 type Command struct {
 	EnvVars    []string `yaml:"envvars"`
 	WorkingDir string   `yaml:"cwd"`
-	Container  string   `yaml:"container"`
+	ImageName  string   `yaml:"image_name"`
 	Name       string   `yaml:"name"`
 	Command    string   `yaml:"command"`
 	Args       []string `yaml:"args"`

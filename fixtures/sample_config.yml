@@ -9,7 +9,7 @@ defaults:
 
 commands:
   - name: Migrate service X
-    container: kensodev/bashir
+    image_name: kensodev/bashir
     command: /run.sh
     envvars:
       - TEST_C
@@ -23,7 +23,7 @@ commands:
       - KensoDev
 
   - name: Migrate service X
-    container: kensodev/bashir
+    image_name: kensodev/bashir
     command: /run.sh
     envvars:
       - TEST_C

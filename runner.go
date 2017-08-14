@@ -27,7 +27,7 @@ func (r *Runner) RunCommands() *RunResult {
 		commandArgs := []string{"run", "-i"}
 
 		commandArgs = append(commandArgs, envVars...)
-		commandArgs = append(commandArgs, command.Container)
+		commandArgs = append(commandArgs, command.ImageName)
 		commandArgs = append(commandArgs, command.Command)
 		commandArgs = append(commandArgs, args...)
 
