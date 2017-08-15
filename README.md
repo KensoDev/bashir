@@ -39,6 +39,11 @@ I also looked into working directly with the docker client but this didn't pan o
 
 Configuration in Bashir is a YAML file and it has multiple sections
 
+`debug`
+
+Debug prints more useful information. For example: It will print out the full
+command that it's running and more.
+
 `slack`
 
 Slack configures the webhook URL that the command will be reported to. The defaults for reporting a command is to say `:pushpin: starting {command name} cc/ @{report_to}, @{report_to}`.
@@ -59,6 +64,7 @@ Configures the commands:
 * `envvars` ENV vars to attach to the container
 * `image_name` docker container image name to run
 * `report_to` Who should we report the command output to?
+* `out` File name to print the log out to
 
 
 ```

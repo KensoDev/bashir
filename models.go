@@ -1,6 +1,7 @@
 package bashir
 
 type Config struct {
+	Debug       bool          `yaml:"debug"`
 	Slack       SlackConfig   `yaml:"slack"`
 	Defaults    DefaultConfig `yaml:"defaults"`
 	Commands    []Command     `yaml:"commands"`
@@ -23,6 +24,7 @@ type Command struct {
 	EnvVars     []string `yaml:"envvars"`
 	WorkingDir  string   `yaml:"cwd"`
 	ImageName   string   `yaml:"image_name"`
+	Out         string   `yaml:"out"`
 	Name        string   `yaml:"name"`
 	Description string   `yaml:"description"`
 	Command     string   `yaml:"command"`

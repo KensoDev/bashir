@@ -26,7 +26,7 @@ func (g *SlackGenerator) GetSlackMessageForStart(command Command) string {
 	return message
 }
 
-func (g *SlackGenerator) GetSlackMessageForEnd(command Command, runErr error, out []byte) string {
+func (g *SlackGenerator) GetSlackMessageForEnd(command Command, runErr error) string {
 	result := "Command finished successfully"
 
 	if runErr != nil {

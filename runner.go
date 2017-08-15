@@ -48,15 +48,17 @@ func (r *Runner) RunCommands() *RunResult {
 
 		cmd := exec.Command("docker", commandArgs...)
 
-		fmt.Println(cmd)
+		if r.Config.Debug {
+			fmt.Println("Running %s", cmd)
+		}
 
 		out, err := cmd.CombinedOutput()
 
-		message = r.SlackGenerator.GetSlackMessageForEnd(command, err, out)
+		message = r.SlackGenerator.GetSlackMessageForEnd(command, err)
 		err = r.SlackClient.SendMessage(message)
 
-		fmt.Println(string(out))
-		fmt.Println(err)
+		logger := NewCommandLogger(command)
+		logger.LogCommandOutput(out)
 	}
 
 	return &RunResult{}

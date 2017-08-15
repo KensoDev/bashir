@@ -1,4 +1,6 @@
 ---
+debug: true
+
 slack:
   webhook_url: https://test.com
   channel: "#channelname"
