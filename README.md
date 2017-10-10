@@ -65,6 +65,9 @@ Configures the commands:
 * `image_name` docker container image name to run
 * `report_to` Who should we report the command output to?
 * `out` File name to print the log out to
+* `volumes` Volumes that will be mounted on the container.
+  Only applicable in the `defaults`, `command` does not support volumes (for
+  now)
 
 
 ```
@@ -82,6 +85,8 @@ defaults:
   args:
     - -x
     - test
+  volumes:
+    - ~/.aws:/root/.aws
 
 commands:
   - name: Migrate service X

@@ -84,3 +84,16 @@ func (s *CommandGeneratorSuite) TestArgsValues(c *C) {
 
 	c.Assert(args[0], Equals, "-x")
 }
+
+func (s *CommandGeneratorSuite) TestVolumeArgs(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, _ := parser.ParseConfigurationFile()
+
+	command := config.Commands[0]
+	commandGenerator := NewCommandGenerator(config)
+	args := commandGenerator.GetVolumeArguments(command)
+
+	c.Assert(args[0], Equals, "-v")
+	c.Assert(args[1], Equals, "~/.aws:/some/.aws")
+}

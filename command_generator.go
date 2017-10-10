@@ -1,5 +1,7 @@
 package bashir
 
+import "fmt"
+
 type CommandGenerator struct {
 	config *Config
 	maker  *EnvVarMaker
@@ -47,6 +49,27 @@ func (c *CommandGenerator) GetArgs(command Command) []string {
 
 	out = append(out, defaultArgs...)
 	out = append(out, commandArgs...)
+
+	return out
+}
+
+func (c *CommandGenerator) GetVolumeArguments(command Command) []string {
+	defaultVolumeArgs := c.config.Defaults.Volumes
+	out := []string{}
+
+	out = append(out, c.GetVolumeArgs(defaultVolumeArgs)...)
+
+	fmt.Println(out)
+
+	return out
+}
+
+func (c *CommandGenerator) GetVolumeArgs(volumes []string) []string {
+	out := []string{}
+
+	for _, v := range volumes {
+		out = append(out, "-v", v)
+	}
 
 	return out
 }
