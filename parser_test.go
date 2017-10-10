@@ -56,3 +56,23 @@ func (s *ParserSuite) TestParseOfYamlFileWithSlackConfig(c *C) {
 	c.Assert(config, NotNil)
 	c.Assert(config.Slack.WebhookUrl, Equals, "https://test.com")
 }
+
+func (s *ParserSuite) TestParserWithVolumes(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, err := parser.ParseConfigurationFile()
+
+	c.Assert(err, IsNil)
+	c.Assert(config, NotNil)
+	c.Assert(len(config.Defaults.Volumes), Equals, 1)
+}
+
+func (s *ParserSuite) TestParserWithVolumesContent(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, err := parser.ParseConfigurationFile()
+
+	c.Assert(err, IsNil)
+	c.Assert(config, NotNil)
+	c.Assert(config.Defaults.Volumes[0], Equals, "~/.aws:/some/.aws")
+}
