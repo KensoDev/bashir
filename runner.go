@@ -36,12 +36,14 @@ func (r *Runner) RunCommands() *RunResult {
 			log.Fatal(err)
 		}
 
-		envVars := generator.GetEnvVarsArguments(command)
+		envVarArgs := generator.GetEnvVarsArguments(command)
+		volumeArgs := generator.GetVolumeArguments(command)
 		args := generator.GetArgs(command)
 
 		commandArgs := []string{"run", "-i"}
 
-		commandArgs = append(commandArgs, envVars...)
+		commandArgs = append(commandArgs, envVarArgs...)
+		commandArgs = append(commandArgs, volumeArgs...)
 		commandArgs = append(commandArgs, command.ImageName)
 		commandArgs = append(commandArgs, command.Command)
 		commandArgs = append(commandArgs, args...)

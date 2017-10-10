@@ -65,6 +65,22 @@ Configures the commands:
 * `image_name` docker container image name to run
 * `report_to` Who should we report the command output to?
 * `out` File name to print the log out to
+* `volumes` Volumes that will be mounted on the container.
+  Only applicable in the `defaults`, `command` does not support volumes (for
+  now). `~` will automatically get expanded to the user home.
+
+
+### Special cases
+
+If your arguments include the substing `ask?`, `bashir` will automatically ask
+you for the value that you want included into the docker container.
+
+For example `environment:ask?` will trigger `bashir` to ask for the value to
+include. Once you input the value it will get passed down to the docker
+container.
+
+This can make your bashir files much more dynamic and ready to roll for all the
+different environments you want to work on.
 
 
 ```
@@ -82,6 +98,8 @@ defaults:
   args:
     - -x
     - test
+  volumes:
+    - ~/.aws:/root/.aws
 
 commands:
   - name: Migrate service X

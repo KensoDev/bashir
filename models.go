@@ -18,6 +18,7 @@ type SlackConfig struct {
 type DefaultConfig struct {
 	EnvVars []string `yaml:"envvars"`
 	Args    []string `yaml:"args"`
+	Volumes []string `yaml:"volumes"`
 }
 
 type Command struct {
