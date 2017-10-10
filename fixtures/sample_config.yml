@@ -13,7 +13,7 @@ defaults:
     - TEST_B
   args:
     - -x
-    - test
+    - environment:ask?
   volumes:
     - ~/.aws:/some/.aws
 

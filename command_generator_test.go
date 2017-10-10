@@ -1,6 +1,7 @@
 package bashir
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -95,5 +96,28 @@ func (s *CommandGeneratorSuite) TestVolumeArgs(c *C) {
 	args := commandGenerator.GetVolumeArguments(command)
 
 	c.Assert(args[0], Equals, "-v")
-	c.Assert(args[1], Equals, "~/.aws:/some/.aws")
+	c.Assert(args[1], Equals, fmt.Sprintf("%s/.aws:/some/.aws", os.Getenv("HOME")))
+}
+
+func (s *CommandGeneratorSuite) TestIsArgumentAskable(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, _ := parser.ParseConfigurationFile()
+
+	commandGenerator := NewCommandGenerator(config)
+	sub, askable := commandGenerator.IsArgumentAskable("environment:ask?")
+
+	c.Assert(sub, Equals, "environment")
+	c.Assert(askable, Equals, true)
+}
+
+func (s *CommandGeneratorSuite) TestPathExpansion(c *C) {
+	configLocation := "fixtures/sample_config.yml"
+	parser := NewParser(configLocation)
+	config, _ := parser.ParseConfigurationFile()
+
+	commandGenerator := NewCommandGenerator(config)
+	volumes := commandGenerator.GetVolumeArgs([]string{"~/.aws:/root/.aws"})
+
+	c.Assert(len(volumes), Equals, 2)
 }
