@@ -21,3 +21,11 @@ func (s *EnvVarMakerSuite) TestGetEnvVarArgument(c *C) {
 	c.Assert(err, IsNil)
 	c.Assert(value, Equals, "FAKE_KEY=FAKE_VALUE")
 }
+
+func (s *EnvVarMakerSuite) TestGetEnvVarArgumentStatic(c *C) {
+	maker := NewEnvVarMaker()
+	value, err := maker.GetEnvVarValue("FAKE_KKEY=FAKE_VVALUE")
+
+	c.Assert(err, IsNil)
+	c.Assert(value, Equals, "FAKE_KKEY=FAKE_VVALUE")
+}
