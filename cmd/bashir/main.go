@@ -10,7 +10,7 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "0.3.0"
+	app.Version = "0.4.0"
 
 	var configFileLocation string
 
