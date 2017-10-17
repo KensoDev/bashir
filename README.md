@@ -8,7 +8,12 @@ This project was created to automate running commands in a safe way. Specificall
 
 These include ansible commands, local commands in a python virtual environment and more. So, this means we have a command manifest that we need to run in sequenece.
 
+### Call Graph
+
+![Bashir Call Graph](http://assets.avi.io/bashir-call-graph.png)
+
 For example:
+
 
 1. Scale up the cluster (Runs a command that will wait for the cluster to be active)
 2. Update the counts of the docker containers you want to run
